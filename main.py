@@ -1,7 +1,7 @@
 import pokemon_list
 
-pokemonList = pokemon_list.pokemon_make_list()
-word_frequency = pokemon_list.frequency('')
+candidate = pokemon_list.pokemon_make_list()
+# word_frequency = pokemon_list.frequency('')
 
 # print(*pokemonList)
 # print(*word_frequency)
@@ -10,7 +10,7 @@ print('Input First Answer')
 word = list(input())
 # word = 'ヒノアラシ'
 n = 0
-candidate = pokemonList
+# candidate = pokemonList
 
 while True:
   n += 1
@@ -29,38 +29,27 @@ while True:
   for i in range(len(word)):
     if result[i] == 0:
       pass
-    elif result[i] == 1:
-      nResult += 1
     elif result[i] == 2:
-      nResult += 5
-  if nResult == 25:
+      nResult += 1
+  if nResult == 5:
     exit()
   newCandidate = []
   for i in range(len(candidate)):
-    if nResult == 0:
-      c = True
-      for j in range(len(word)):
+    c = True
+    for j in range(len(word)):
+      if result[j] == 0:
         if word[j] in candidate[i]:
           c = False
           break
-      if c:
-        newCandidate.append(candidate[i])
-    else:
-      c = True
-      for j in range(len(word)):
-        if result[j] == 0:
-          if word[j] in candidate[i]:
-            c = False
-            break
-        elif result[j] == 1: # yellow
-          if not (word[j] in candidate[i] and word[j] != candidate[i][j]):
-            c = False
-            break
-        else:
-          if word[j] != candidate[i][j]:
-            c = False
-            break
-      if c:
+      elif result[j] == 1: # yellow
+        if not (word[j] in candidate[i] and word[j] != candidate[i][j]):
+          c = False
+          break
+      else:
+        if word[j] != candidate[i][j]:
+          c = False
+          break
+    if c:
         newCandidate.append(candidate[i])
   # print(*newCandidate)
   if len(newCandidate) == 1:

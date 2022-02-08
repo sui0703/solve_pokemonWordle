@@ -22,16 +22,13 @@ def frequency(pokemon_list):
   else:
     for pokemon in pokemon_list:
       for j in range(len(pokemon)):
-        if pokemon[j] == '・':
-              pass
-        else:
-          # print(row[0][i],ord(row[0][i]))
-          h[ord(pokemon[j]) - ord('ァ')] += 1
+        # print(row[0][i],ord(row[0][i]))
+        h[ord(pokemon[j]) - ord('ァ')] += 1
   return h
 
 def pokemon_make_list():
   pokemonList = []
-  fileName = 'pokemon_list.csv'
+  fileName = 'pokemon_name.csv'
   with open(fileName, encoding= 'utf-8') as f:
     csvreader = csv.reader(f)
     for row in csvreader:
