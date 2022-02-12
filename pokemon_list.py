@@ -28,7 +28,7 @@ def frequency(pokemon_list):
 
 def pokemon_make_list():
   pokemonList = []
-  fileName = 'pokemon_name.csv'
+  fileName = 'pokemon_list.csv'
   with open(fileName, encoding= 'utf-8') as f:
     csvreader = csv.reader(f)
     for row in csvreader:
