@@ -38,7 +38,9 @@ while True:
   for i in range(len(candidate)):
     c = True
     for j in range(len(word)):
-      if result[j] == 0:
+      if word[j] in word[:j]:
+        pass
+      elif result[j] == 0:
         if word[j] in candidate[i]:
           c = False
           break
@@ -60,15 +62,15 @@ while True:
     print('Error.')
     exit()
   else:
-    fre = pokemon_list.frequency(newCandidate)
+    fre, fre_i = pokemon_list.frequency(newCandidate)
     score = [[0 for i in range(2)] for j in range(len(newCandidate))]
     i = 0
     # total = 0
     for pokemon in newCandidate:
       c = 0
       for j in range(len(pokemon)):
-        if pokemon[j] not in pokemon[:j]:
-          c += fre[ord(pokemon[j]) - ord('ァ')]
+        if (pokemon[j] not in pokemon[:j]) and 0 <= ord(pokemon[j]) - ord('ァ') <= 91:
+          c += fre[ord(pokemon[j]) - ord('ァ')] * fre_i[ord(pokemon[j]) - ord('ァ')][j]
       score[i][0] = c
       score[i][1] = pokemon
       i += 1
@@ -80,7 +82,6 @@ while True:
     
     # print(score[0][1])
     # word = score[0][1]
-    pass
   candidate = []
   for i in range(len(newCandidate)):
     if score[i][1] != word:
